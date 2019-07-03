@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Authors>John Stefanelli &lt;jpsdzn@gmail.com&gt;</Authors>
+    <Company />
+    <PackageProjectUrl>https://github.com/jstefanelli/JSTF.PortAudio</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/jstefanelli/JSTF.PortAudio</RepositoryUrl>
+    <PackageLicenseExpression>http://www.portaudio.com/license.html</PackageLicenseExpression>
+    <Description>A PortAudio .NETStandard 2.0 Wrapper</Description>
+    <Copyright />
+    <PackageTags>.NETStandard PortAudio</PackageTags>
+    <AssemblyVersion>19.6.0.0</AssemblyVersion>
+    <FileVersion>19.6.0.0</FileVersion>
+		<Platforms>AnyCPU;x86;x64</Platforms>
+    <Configurations>Windows-Debug;Windows-Release;Linux-Debug;Linux-Release</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Windows-Debug|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG;IS_SHIM</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Windows-Debug|x86'">
+    <DefineConstants>TRACE;WINDOWS_32</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Windows-Debug|x64'">
+    <DefineConstants>TRACE;WINDOWS_64</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Windows-Release|x64'">
+    <DefineConstants>TRACE;WINDOWS_64</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Windows-Release|x86'">
+    <DefineConstants>TRACE;WINDOWS_32</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Linux-Release|AnyCPU'">
+    <DefineConstants>TRACE;IS_SHIM</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Linux-Release|x64'">
+    <DefineConstants>TRACE;UNIX</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Linux-Release|x86'">
+    <DefineConstants>TRACE;UNIX</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Linux-Debug|AnyCPU'">
+    <DefineConstants>TRACE;IS_SHIM</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Windows-Release|AnyCPU'">
+    <DefineConstants>TRACE;IS_SHIM</DefineConstants>
+  </PropertyGroup>
+
+</Project>
