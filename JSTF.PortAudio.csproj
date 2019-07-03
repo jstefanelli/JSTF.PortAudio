@@ -2,17 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Authors>John Stefanelli &lt;jpsdzn@gmail.com&gt;</Authors>
-    <Company />
-    <PackageProjectUrl>https://github.com/jstefanelli/JSTF.PortAudio</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/jstefanelli/JSTF.PortAudio</RepositoryUrl>
-    <PackageLicenseExpression>http://www.portaudio.com/license.html</PackageLicenseExpression>
-    <Description>A PortAudio .NETStandard 2.0 Wrapper</Description>
     <Copyright />
-    <PackageTags>.NETStandard PortAudio</PackageTags>
-    <AssemblyVersion>19.6.0.0</AssemblyVersion>
-    <FileVersion>19.6.0.0</FileVersion>
 		<Platforms>AnyCPU;x86;x64</Platforms>
     <Configurations>Windows-Debug;Windows-Release;Linux-Debug;Linux-Release</Configurations>
   </PropertyGroup>
@@ -56,5 +46,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Windows-Release|AnyCPU'">
     <DefineConstants>TRACE;IS_SHIM</DefineConstants>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PortAudio_Natives_NET" Version="19.6.0" />
+  </ItemGroup>
 
 </Project>
