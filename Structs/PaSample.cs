@@ -4,7 +4,7 @@ using System.Text;
 
 namespace JSTF.PortAudio.Structs
 {
-	public enum PaSampleFormat : ulong
+	internal enum PaSampleFormat : ulong
 	{
 		paFloat32 = 0x00000001,
 		paInt32 = 0x00000002,

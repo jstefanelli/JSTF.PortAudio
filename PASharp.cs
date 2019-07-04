@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
+using JSTF.PortAudio.Managed;
 using JSTF.PortAudio.Structs;
 
 namespace JSTF.PortAudio
@@ -26,13 +27,15 @@ namespace JSTF.PortAudio
 		private static extern int Pa_GetVersion();
 
 		[DllImport(LibraryName)]
-		private static extern string Pa_GetVersionText();
+		private static extern IntPtr Pa_GetVersionText();
 
+		/* Somehow not exported in windows DLL
 		[DllImport(LibraryName)]
 		private static extern IntPtr Pa_GetVersionInfo();
+		*/
 
 		[DllImport(LibraryName)]
-		private static extern string Pa_GetErrorText(int c);
+		private static extern IntPtr Pa_GetErrorText(int c);
 
 		[DllImport(LibraryName)]
 		private static extern int Pa_Initialize();
@@ -142,18 +145,123 @@ namespace JSTF.PortAudio
 		[DllImport(LibraryName)]
 		private static extern void Pa_Sleep(long msec);
 
-		public static int OpenStream()
+		public static int GetVersion()
 		{
-#if IS_SHIM
-			return 0;
-#endif
+			return Pa_GetVersion();
 		}
 
-		public static int GetStreamTime()
+		public static string GetVersionText()
 		{
-#if IS_SHIM
-			return 0;
-#endif
+			return Marshal.PtrToStringAnsi(Pa_GetVersionText());
 		}
+
+		public static string GetErrorText(ErrorCode c)
+		{
+			return Marshal.PtrToStringAnsi(Pa_GetErrorText((int)c));
+		}
+
+		public static ErrorCode Initialize()
+		{
+			return (ErrorCode)Pa_Initialize();
+		}
+
+		public static ErrorCode Terminate()
+		{
+			return (ErrorCode)Pa_Terminate();
+		}
+
+		public static ErrorCode GetHostApiCount(out int hostApiCount)
+		{
+			int apiCount = Pa_GetHostApiCount();
+			if(apiCount < 0)
+			{
+				hostApiCount = 0;
+				return (ErrorCode)apiCount;
+			}
+				hostApiCount = apiCount;
+				return ErrorCode.NoError;
+		}
+
+		public static ErrorCode GetDefaultHostApi(out int defaultHostApi)
+		{
+			int def = Pa_GetDefaultHostApi();
+			if(def < 0)
+			{
+				defaultHostApi = 0;
+				return (ErrorCode)def;
+			}
+			defaultHostApi = def;
+			return ErrorCode.NoError;
+		}
+
+		public static HostApiInfo GetHostApiInfo(int hostApi)
+		{
+			IntPtr native = Pa_GetHostApiInfo(hostApi);
+			if (native == IntPtr.Zero)
+				return null;
+			return HostApiInfo.FromNative(native);
+		}
+
+		public static ErrorCode HostApiTypeIdToHostApiIndex(HostApiTypeId type, out int id)
+		{
+			int rvl = Pa_HostApiTypeIdToHostApiIndex((PaHostApiTypeId)type);
+			if(rvl < 0)
+			{
+				id = 0;
+				return (ErrorCode)rvl;
+			}
+			id = rvl;
+			return ErrorCode.NoError;
+		}
+
+		public static ErrorCode HostApiDeviceIndexToDeviceIndex(int hostApi, int hostApiDeviceIndex, out int deviceIndex)
+		{
+			int rvl = Pa_HostApiDeviceIndexToDeviceIndex(hostApi, hostApiDeviceIndex);
+			if(rvl < 0)
+			{
+				deviceIndex = 0;
+				return (ErrorCode)rvl;
+			}
+			deviceIndex = rvl;
+			return ErrorCode.NoError;
+		}
+
+		public static HostErrorInfo GetLastHostErrorInfo()
+		{
+			IntPtr native = Pa_GetLastHostErrorInfo();
+			return HostErrorInfo.FromNative(native);
+		}
+
+		public static ErrorCode GetDeviceCount(out int deviceCount)
+		{
+			int rvl = Pa_GetDeviceCount();
+			if(rvl < 0)
+			{
+				deviceCount = 0;
+				return (ErrorCode)rvl;
+			}
+			deviceCount = rvl;
+			return ErrorCode.NoError;
+		}
+
+		public static int GetDefaultInputDevice()
+		{
+			return Pa_GetDefaultInputDevice();
+		}
+
+		public static int GetDefaultOutputDevice()
+		{
+			return Pa_GetDefaultOutputDevice();
+		}
+
+		public static DeviceInfo GetDeviceInfo(int device)
+		{
+			IntPtr ptr = Pa_GetDeviceInfo(device);
+			if (ptr == IntPtr.Zero)
+				return null;
+			return DeviceInfo.FromNative(ptr);
+		}
+
+
 	}
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace JSTF.PortAudio.Structs
 {
-	public enum PaErrorCode : int
+	internal enum PaErrorCode : int
 	{
 		paNoError = 0,
 

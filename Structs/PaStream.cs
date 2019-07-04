@@ -5,24 +5,24 @@ using System.Text;
 
 namespace JSTF.PortAudio.Structs
 {
-	public delegate int PaStreamCallback(in IntPtr input, IntPtr output, ulong frameCount, ref PaStreamCallbackTimeInfo timeInfo, PaStreamCallbackFlags statusFlags, in IntPtr userData);
-	public delegate void PaStreamFinishedCallback(IntPtr userData);
+	internal delegate int PaStreamCallback(in IntPtr input, IntPtr output, ulong frameCount, ref PaStreamCallbackTimeInfo timeInfo, PaStreamCallbackFlags statusFlags, in IntPtr userData);
+	internal delegate void PaStreamFinishedCallback(IntPtr userData);
 
 	[StructLayout(LayoutKind.Sequential, Pack = 4)]
-	public struct PaStreamCallbackTimeInfo
+	internal struct PaStreamCallbackTimeInfo
 	{
 		public double inputBufferAdcTime;
 		public double currentTime;
 		public double outputBufferDacTime;
 	}
-	public enum PaStreamCallbackResult : int
+	internal enum PaStreamCallbackResult : int
 	{
 		paContinue = 0,
 		paComplete = 1,
 		paAbort = 2
 	}
 
-	public enum PaStreamCallbackFlags : ulong
+	internal enum PaStreamCallbackFlags : ulong
 	{
 		paInputUnderflow = 0x00000001,
 		paInputOverflow = 0x00000002,
@@ -32,7 +32,7 @@ namespace JSTF.PortAudio.Structs
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
-	public struct PaStreamParameters
+	internal struct PaStreamParameters
 	{
 		public int device;
 		public int channelCount;
@@ -41,7 +41,7 @@ namespace JSTF.PortAudio.Structs
 		public IntPtr hostApiSpecificStreamInfo;
 	}
 
-	public enum PaStreamFlags : ulong
+	internal enum PaStreamFlags : ulong
 	{
 		paNoFlag = 0,
 		paClipOff = 0x00000001,
@@ -51,7 +51,8 @@ namespace JSTF.PortAudio.Structs
 		paPlatformSpecificFlags = 0xFFFF0000
 	}
 
-	public struct PaStreamInfo
+	[StructLayout(LayoutKind.Sequential)]
+	internal struct PaStreamInfo
 	{
 		public int structVersion;
 		public double inputLatency;

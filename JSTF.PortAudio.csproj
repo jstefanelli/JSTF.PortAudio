@@ -48,7 +48,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="PortAudio_Natives_NET" Version="19.6.0" />
+    <PackageReference Include="PortAudio_Natives_NET" Version="19.6.0.3" />
   </ItemGroup>
 
 </Project>

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JSTF.PortAudio.Structs
 {
-	public enum PaHostApiTypeId : int
+	internal enum PaHostApiTypeId : int
 	{
 		paInDevelopment = 0, /* use while developing support for a new host API */
 		paDirectSound = 1,
@@ -23,8 +23,8 @@ namespace JSTF.PortAudio.Structs
 		paAudioScienceHPI = 14
 	}
 
-	[StructLayout(LayoutKind.Sequential, Pack = 4)]
-	public struct PaHostApiInfo
+	[StructLayout(LayoutKind.Sequential)]
+	internal struct PaHostApiInfo
 	{
 		/// this is struct version 1
 		public int structVersion;
@@ -50,7 +50,7 @@ namespace JSTF.PortAudio.Structs
 	}
 
 	[StructLayout(LayoutKind.Sequential, Pack = 4)]
-	public struct PaHostErrorInfo
+	internal struct PaHostErrorInfo
 	{
 		public PaHostApiTypeId hostApiType;
 		public long errorCode;

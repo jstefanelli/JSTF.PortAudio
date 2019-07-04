@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace JSTF.PortAudio.Structs
 {
-	public struct PaDeviceInfo
+	[StructLayout(LayoutKind.Sequential)]
+	internal struct PaDeviceInfo
 	{
 		public int structVersion;  /* this is struct version 2 */
 		public IntPtr name;

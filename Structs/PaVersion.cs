@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 namespace JSTF.PortAudio.Structs
 {
 	[StructLayout(LayoutKind.Sequential, Pack = 4)]
-	public struct PaVersionInfo
+	internal struct PaVersionInfo
 	{
 		public int versionMajor;
 		public int versionMinor;
