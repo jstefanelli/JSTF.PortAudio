@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JSTF.PortAudio.Structs
 {
-	internal delegate int PaStreamCallback(in IntPtr input, IntPtr output, ulong frameCount, ref PaStreamCallbackTimeInfo timeInfo, PaStreamCallbackFlags statusFlags, in IntPtr userData);
+	internal delegate int PaStreamCallback(IntPtr input, IntPtr output, ulong frameCount, ref PaStreamCallbackTimeInfo timeInfo, PaStreamCallbackFlags statusFlags, IntPtr userData);
 	internal delegate void PaStreamFinishedCallback(IntPtr userData);
 
 	[StructLayout(LayoutKind.Sequential, Pack = 4)]

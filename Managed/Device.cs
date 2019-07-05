@@ -6,7 +6,7 @@ using System.Text;
 
 namespace JSTF.PortAudio.Managed
 {
-	public sealed class DeviceInfo
+	public struct DeviceInfo
 	{
 		public int StructVersion;  /* this is struct version 2 */
 		public string Name;
@@ -23,10 +23,6 @@ namespace JSTF.PortAudio.Managed
 		public double DefaultHighOutputLatency;
 
 		public double DefaultSampleRate;
-
-		internal DeviceInfo(){
-			
-		}
 
 		public static DeviceInfo FromNative(IntPtr ptr)
 		{
